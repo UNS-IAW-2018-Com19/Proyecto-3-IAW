@@ -1,0 +1,27 @@
+{% extends 'layout.twig' %}
+{% block options %}
+{% if auth_check() %}
+<!--Jumbotron-->
+<div class="jumbotron text-center mdb-color lighten-2 white-text z-depth-2">
+
+    <!--Title-->
+    <h1 class="card-title h2-responsive mt-2 font-bold"><strong>Bienvenido: Administrador {{ auth_user().name }}</strong></h1>
+    <!--Subtitle-->
+    <p class="mt-4"><strong>Página de administración del torneo de Mario Kart</strong></p>
+
+    <!--Text-->
+    <div class="d-flex justify-content-center">
+        <p class="card-text my-2" style="max-width: 43rem;">Selecciona qué deseas modificar:
+        </p>
+    </div>
+
+    <hr class="my-4 rgba-white-light">
+
+    <a href="/jugadores"><button type="button" class="btn btn-outline-white">Modificar Jugadores <i class="fa fa-diamond ml-1"></i></button></a>
+    <button type="button" class="btn btn-outline-white">Modificar Carreras <i class="fa fa-diamond ml-1"></i></button>
+    <button type="button" class="btn btn-outline-white">Modificar Equipos <i class="fa fa-diamond ml-1"></i></button>
+
+</div>
+<!--Jumbotron-->
+{% endif %}
+{% endblock %}

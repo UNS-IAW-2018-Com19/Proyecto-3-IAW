@@ -1,0 +1,31 @@
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand header-brand-centered" href="#"><img id="nintendoLogo" src="images/logos/nintendo.png"  alt="Nintendo Logo"></a>
+     
+   <!-- Collapsible content -->
+
+    <div class="collapse navbar-collapse" id="basicExampleNav">    
+
+    
+     {% if auth_check() and app.request.pathinfo !="/home" %}
+        <ul class="navbar-nav ml-auto">
+            <div class="content-menu">
+                    <li id="equipos"><span><img width="30px" src="images/logos/add.svg"></img></span><h5>Agregar</h5></li>
+                    <li id="posiciones"><span><img width="30px" src="images/logos/super-mario.svg"></span><h5>Modificar</h5></li>
+                    <li id="fixture"><span><img width="30px" src="images/logos/delete.svg"></span><h5>Eliminar</h5></li>
+        
+            </div>
+        </ul>
+            
+        <ul class="navbar-nav ml-auto">
+                <li class="nav-item ml-auto">
+                    <a href="/logout"><button class="btn btn-primary" type="submit">Log out</button></a>
+                </li>
+        </ul>
+       {% endif %}
+    </div>
+    <!-- Collapsible content -->
+
+</nav>

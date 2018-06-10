@@ -1,0 +1,60 @@
+{% extends 'layout.twig' %}
+
+{% block form %}
+<!-- Material form login -->
+
+{% if not(auth_check()) %}
+<!-- Modal -->
+
+
+     <div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <form method="POST" action="/login">
+                 {{ csrf_field() }}
+            <div class="modal-dialog" role="document">
+                <!--Content-->
+                <div class="modal-content form-elegant">
+                    <!--Header-->
+                    <div class="modal-header text-center">
+                        <h2 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Ingresar</strong></h2>
+                    </div>
+                    <!--Body-->
+                    <div class="modal-body mx-4">
+                        <!--Body-->
+                        <div class="md-form mb-5">
+                            <input type="email" name="email" id="Form-email1" class="form-control validate">
+                            <label data-error="wrong" data-success="right" for="Form-email1">Email</label>
+                        </div>
+        
+                        <div class="md-form pb-3">
+                            <input type="password" name="password" id="Form-pass1" class="form-control validate">
+                            <label data-error="wrong" data-success="right" for="Form-pass1">Contraseña</label>
+                            <p class="font-small blue-text d-flex justify-content-end">Olvidaste tu <a href="#" class="blue-text ml-1"> contraseña?</a></p>
+                        </div>
+        
+                        <div class="text-center mb-3">
+                            <button type="submit" class="btn blue btn-block btn-rounded z-depth-1a">Ingresar</button>
+                        </div>
+                    </div>
+                    <!--Footer-->
+                    <div class="modal-footer mx-5 pt-3 mb-1">
+                        <p class="font-small grey-text d-flex justify-content-end">No sos miembro? <a href="#" class="blue-text ml-1"> Registrarse</a></p>
+                    </div>
+                </div>
+                <!--/.Content-->
+            </div>
+        </form>
+    </div>
+
+
+ 
+
+{% endif %}
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+      $(window).on('load',function(){
+          $('#elegantModalForm').modal({backdrop: 'static', keyboard: false, show:true})  
+      });
+  </script>
+{% endblock %}
