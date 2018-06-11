@@ -1,0 +1,171 @@
+    <div class="container">
+        <h5 class="section-title h1">Modificar {{name}}</h5>
+        <div class="row top-buffer">
+        {% if name == 'Jugador' %}
+            {% for jugador in jugadores %}
+                <!-- Team member -->
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                <div id="flip{{jugador.id_jugador}}" class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                        <div class="mainflip">
+                            <div class="frontside">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <p><img class=" img-fluid" src="/images/logos/{{jugador.avatar}}" alt="card image"></p>
+                                        <h4 class="card-title"> Jugador: {{ jugador.userName }}</h4>
+                                        <button id="{{jugador.id_jugador}}" class="btn btn-primary btn-md btninfo">Ver info</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="backside">
+                                <div class="card">
+                                    <div class="card-body text-center mt-4">
+                                        <h3 class="card-title">Información del jugador</h3>
+                                        <form id="formModificar{{jugador.id_jugador}}" method="POST" action="/modificar/jugador">
+                                            {{ csrf_field() }}
+                                            <h5 class="card-title">Reemplazar username</h5>
+                                            <div class="form-row">      
+                                                <div class="col">
+                                                <input type="usernameViejo" name="usernameViejo" class="form-control" value="{{jugador.userName}}" readonly></input>
+                                                </div>
+                                                <div class="col">
+                                                <input type="username" name="username" class="form-control">
+                                                </div>
+                                            </div>
+                                            <h5 class="card-title">Reemplazar personaje</h5>
+                                            <div class="form-row">    
+                                                <div class="col">
+                                                <input type="text" class="form-control" placeholder="{{jugador.personaje}}" value="{{jugador.personaje}}" readonly></input>
+                                                </div>
+                                                <div class="col">
+                                                <input type="personaje" name="personaje" class="form-control">
+                                                </div>
+                                            </div>
+                                            <h5 class="card-title">Avatar</h5>
+                                            <select type="avatar" name="avatar" class="form-control">
+                                                {% for player in jugadores %}
+                                                    {% if jugador.avatar == player.avatar %}
+                                                        <option selected="selected">{{player.avatar}}</option>
+                                                    {% else %}
+                                                        <option>{{player.avatar}}</option>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </select>
+                                        </form>
+                                            <button id="{{jugador.id_jugador}}" class="btn btn-danger btn-md btninfo">Cancelar</button>
+                                            <button type="submit" form="formModificar{{jugador.id_jugador}}" class="btn btn-success btn-md">Modificar</button>     
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <hr>
+                    <hr>
+                    <hr>
+                    <hr>
+                </div>
+            {% endfor %}
+        {% else %}
+            {% if name == 'Equipo' %}
+                {% for equipo in equipos %}
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div id="flip{{equipo.id_equipo}}" class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                            <div class="mainflip">
+                                <div class="frontside">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <p><img class=" img-fluid" src="/images/logos/{{equipo.logo}}" alt="card image"></p>
+                                            <h4 class="card-title"> Equipo: {{ equipo.nombre }}</h4>
+                                            <button id="{{equipo.id_equipo}}" class="btn btn-primary btn-md btninfo">Ver info</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="backside">
+                                    <div class="card">
+                                        <div class="card-body text-center mt-4">
+                                            <h3 class="card-title">Información del equipo</h3>
+                                            <form id="formModificar{{equipo.id_equipo}}" method="POST" action="/modificar/equipo">
+                                                {{ csrf_field() }}
+                                                <h5 class="card-title">Reemplazar nombre</h5>
+                                                <div class="form-row">      
+                                                    <div class="col">
+                                                    <input type="nombreViejo" name="nombreViejo" class="form-control" value="{{equipo.nombre}}" readonly></input>
+                                                    </div>
+                                                    <div class="col">
+                                                    <input type="nombre" name="nombre" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <h5 class="card-title">Ver/Modificar Integrantes</h5>
+                                                <div class="form-row">    
+                                                        {% if equipo.id_jugadorUno == null %}
+                                                            <div class="col">
+                                                                <select type="jugadorone" name="jugadorone" class="form-control">
+                                                                {% for player in jugadores %}
+                                                                {% if player.id_equipo == null %}
+                                                                        <option>{{player.userName}}</option>
+                                                                {% endif %}
+                                                                {% endfor %}
+                                                                </select>
+                                                            </div>
+                                                        {% endif %}  
+
+                                                        {% if equipo.id_jugadorDos == null %}
+                                                            <div class="col">
+                                                                <select type="jugadortwo" name="jugadortwo" class="form-control">
+                                                                {% for player in jugadores %}
+                                                                {% if player.id_equipo == null %}
+                                                                        <option selected="selected">{{player.userName}}</option>
+                                                                {% endif %}
+                                                                {% endfor %}
+                                                                </select>
+                                                            </div>
+                                                        {% endif %}  
+                                                        {% for jugador in jugadores %}
+                                                            {% if jugador.id_jugador == equipo.id_jugadorUno %}
+                                                                <div class="col">
+                                                                <input type="jugadorone" name="jugadorone" class="form-control" value="{{jugador.userName}}" readonly></input>
+                                                                </div>
+                                                            {% endif %}
+                                                            {% if jugador.id_jugador == equipo.id_jugadorDos %}
+                                                                    <div class="col">
+                                                                    <input type="jugadortwo" name="jugadortwo" class="form-control" value="{{jugador.userName}}" readonly>
+                                                                    </div>
+                                                            {% endif %}
+                                                        {% endfor %}     
+                                                </div>
+                                                <h5 class="card-title">Reemplazar logo</h5>
+                                                <div class="form-row">      
+                                                    <div class="col">
+                                                        <input type="logoactual" name="logoactual" class="form-control" value="{{equipo.logo}}" readonly></input>
+                                                    </div>
+                                                    <div class="col"> 
+                                                        <select type="logo" name="logo" class="form-control">
+                                                            {% for team in equipos %}
+                                                                {% if equipo.logo == team.logo %}
+                                                                    <option selected="selected">{{team.logo}}</option>
+                                                                {% else %}
+                                                                    <option>{{team.logo}}</option>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                                <button id="{{equipo.id_equipo}}" class="btn btn-danger btn-md btninfo">Cancelar</button>
+                                                <button type="submit" form="formModificar{{equipo.id_equipo}}" class="btn btn-success btn-md">Modificar</button>     
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <hr>
+                        <hr>
+                        <hr>
+                        <hr>
+                    </div>     
+                {% endfor %}  
+            {% endif %}
+        {% endif %}

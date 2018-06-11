@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+
+use Jenssegers\Mongodb\Eloquent\Builder;
+
 use \App\Jugador;
 use \App\Equipo;
 
@@ -26,8 +29,9 @@ class JugadorController extends Controller{
         $equipos = Equipo::all();
 
         $rutas = array("/agregar/jugador","/modificar/jugador","/eliminar/jugador");
+        $name = "Jugador";
     
-        return view($view,compact('jugadores','equipos','rutas'));
+        return view($view,compact('jugadores','equipos','rutas', 'name'));
     }
 
     public function store (Request $request){
@@ -43,26 +47,64 @@ class JugadorController extends Controller{
             $arr = array("kart" => $kart, "ruedas" => $ruedas, "glider" => $glider);
             
             $jugador->vehiculo = $arr;
+
+            /** avatar y foto */
             
             $jugador->save();          
 
             $jugadores = Jugador::all();
             $equipos = Equipo::all();
             $ok = true;
+            $name = 'Jugador';
 
-            return view('agregar', compact('jugadores', 'equipos', 'ok'));
+            return view('agregar', compact('jugadores', 'equipos', 'ok','name'));
         }
     }
     
     public function update(Request $request){
-        dd($request);
         if(Auth::check()){
+                $oldUserName = $request['usernameViejo'];
                 $username = $request['username'];
-                $jugador = $request['jugador'];
+                $personaje = $request['personaje'];
                 $avatar = $request['avatar'];
 
-                $jugadores = Jugador::all();
+                $player = Jugador::where('userName', $oldUserName)->first();
+              
+                   
+                if($username != null)
+                    $player->userName = $username;
+                    
+                if($personaje != null)
+                    $player->personaje= $personaje;
+                    
+                if($avatar != null)
+                    $player->avatar= $avatar;
+                
 
+                $player->save();
+
+                return redirect("/modificar/jugador");
+
+        }
+    }
+
+    public function delete(Request $request){
+        if(Auth::check()){
+                $id = (integer)$request['id'];
+                $player = Jugador::find($id);
+
+
+                if($equipo = Equipo::where('id_jugadorUno',$id)->first())
+                    $equipo->unset('id_jugadorUno');
+                else
+                if($equipo = Equipo::where('id_jugadorDos',$id)->first())
+                    $equipo->unset('id_jugadorDos');
+                $equipo->save();
+
+
+                $player->delete();
+
+                return redirect("/eliminar/jugador");
         }
     }
 }

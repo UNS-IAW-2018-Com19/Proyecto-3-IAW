@@ -14,7 +14,7 @@ class CreateEquiposTable extends Migration
     public function up()
     {
         Schema::create('equipos', function (Blueprint $table) {
-            $table->double('id_equipo');
+            $table->integer('id_equipo');
             $table->string("nombre");
             $table->string("logo");
             $table->timestamps();

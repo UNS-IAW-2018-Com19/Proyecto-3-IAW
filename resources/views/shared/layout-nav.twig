@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse" id="basicExampleNav">    
      {% if auth_check() %}
             {% if app.request.pathinfo !="/home" %}
-                {% set opcionAgregar = rutas[0] %}
+                {% set opcionAgregar = rutas[0] %} 
                 {% set opcionModificar = rutas[1] %}
                 {% set opcionEliminar = rutas[2] %}
     
