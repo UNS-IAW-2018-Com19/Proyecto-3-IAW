@@ -9,6 +9,7 @@ class Jugador extends Eloquent{
     protected $connection = 'mongodb';
     protected $collection = 'jugadores';
     protected $primaryKey = 'id_jugador';
+    public $json;
 
     protected $foreign_key = 'id_equipo';
        /**

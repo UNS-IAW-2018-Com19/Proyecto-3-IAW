@@ -1,0 +1,80 @@
+{% extends 'layout.twig' %}
+
+{% block modificar %}
+
+    <div class="container-fluid">
+    {% include 'shared/errors.twig' %}  
+    </div>
+    
+    <div class="jumbotron mdb-color lighten-2 white-text z-depth-2">
+        
+<section id="team" class="pb-5">
+    <div class="container">
+        <h5 class="section-title h1">Modificar jugadores</h5>
+        <div class="row top-buffer">
+         {% for jugador in jugadores %}
+            <!-- Team member -->
+            <div class="col-xs-12 col-sm-6 col-md-4">
+               <div id="flip{{jugador.id_jugador}}" class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                    <div class="mainflip">
+                        <div class="frontside">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <p><img class=" img-fluid" src="/images/avatar/{{jugador.avatar}}" alt="card image"></p>
+                                    <h4 class="card-title"> Jugador: {{ jugador.userName }}</h4>
+                                    <button id="{{jugador.id_jugador}}" class="btn btn-primary btn-md btninfo">Ver info</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="backside">
+                            <div class="card">
+                                <div class="card-body text-center mt-4">
+                                    <h3 class="card-title">Información del jugador</h3>
+                                    <form id="formModificar" method="POST" action="/modificar/jugador">
+                                        {{ csrf_field() }}
+                                         <h5 class="card-title">Reemplazar username</h5>
+                                        <div class="form-row">    
+                                            <div class="col">
+                                            <input type="usernameViejo" name="usernameViejo" class="form-control" value="{{jugador.userName}}" readonly></input>
+                                            </div>
+                                            <div class="col">
+                                            <input type="username" name="username" class="form-control">
+                                            </div>
+                                        </div>
+                                        <h5 class="card-title">Reemplazar personaje</h5>
+                                        <div class="form-row">    
+                                            <div class="col">
+                                            <input type="text" class="form-control" placeholder="{{jugador.personaje}}" value="{{jugador.personaje}}" readonly>{{jugador.personaje}}</input>
+                                            </div>
+                                            <div class="col">
+                                            <input type="personaje" name="personaje" class="form-control">
+                                            </div>
+                                        </div>
+                                        <h5 class="card-title">Avatar</h5>
+                                        <select type="avatar" name="avatar" class="form-control">
+                                            {% for player in jugadores %}
+                                                {% if jugador.avatar == player.avatar %}
+                                                    <option selected="selected">{{player.avatar}}</option>
+                                                {% else %}
+                                                    <option>{{player.avatar}}</option>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </select>
+                                         </form>
+                                        <button id="{{jugador.id_jugador}}" class="btn btn-danger btn-md btninfo">Cancelar</button>
+                                        <button type="submit" form="formModificar" class="btn btn-success btn-md">Modificar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <hr>
+                <hr>
+                <hr>
+                <hr>
+            </div>
+        {% endfor %}
+</section>
+
+{% endblock %}

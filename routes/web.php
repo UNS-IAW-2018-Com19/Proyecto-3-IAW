@@ -24,7 +24,12 @@ Route::get('/home', function () {
 Route::post('/login', 'SessionsController@store');
 Route::get('/logout', 'SessionsController@destroy');
 
-Route::get('/jugadores', 'JugadorController@create');
-Route::post('/modificarJugadores','JugadorController@store');
+Route::get('/{agregar}/jugador', 'JugadorController@create');
+Route::post('/agregar/jugador','JugadorController@store');
+
+
+Route::get('/{modificar}/jugador', 'JugadorController@create');
+Route::post('/modificar/jugador','JugadorController@update');
+
 
 

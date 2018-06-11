@@ -1,0 +1,17 @@
+ {% if errors.any() %}
+            <div class="alert alert-danger">
+            <ul>
+            {% for error in errors.all() %}
+                <li>{{ error }}</li>
+                </hr>
+            {% endfor %}</ul>
+            </div>
+    {% else %}
+        {% if ok  %}
+            <div class="alert alert-success alert-dismissible" role="alert">Inserción exitosa!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endif %}
+{% endif %}  

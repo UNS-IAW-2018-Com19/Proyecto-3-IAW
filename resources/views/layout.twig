@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="images/logos/mario.ico"/>
+    <link rel="icon" href="/images/logos/mario.ico"/>
     <title>Página de administrador</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,13 +12,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap  -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
-
     <!-- Estilos propios --> 
-     <link id="Estilos propios" href="css/styles.css" rel="stylesheet">
-     
+    <link id="Estilos propios" href="/css/styles.css" rel="stylesheet">
   </head>
-  
-  
   <body>
       {% include 'shared/layout-nav.twig' %}
       
@@ -27,13 +23,12 @@
       
       {% block options %}
       {% endblock %}
-
          
       {% block jugadores %}
       {% endblock %}
 
          
-      {% block equipos %}
+      {% block modificar %}
       {% endblock %}
 
          
@@ -41,9 +36,7 @@
       {% endblock %}
       
   </body>
-
- 
-<!-- JQuery -->
+    <!-- JQuery -->  
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <!-- Bootstrap tooltips -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
@@ -52,8 +45,8 @@
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>
  
+  <script type="text/javascript" src= "/js/main.js" async></script>
+ 
  {% block script %}
  {% endblock %}
 </html>
-
-

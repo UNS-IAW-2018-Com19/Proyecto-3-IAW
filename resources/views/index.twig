@@ -3,10 +3,8 @@
 {% block form %}
 <!-- Material form login -->
 
-{% if not(auth_check()) %}
+{% if not(auth_check()) %}  
 <!-- Modal -->
-
-
      <div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <form method="POST" action="/login">
                  {{ csrf_field() }}
@@ -44,17 +42,9 @@
             </div>
         </form>
     </div>
-
-
- 
-
 {% endif %}
+
 {% endblock %}
 
-{% block script %}
-<script type="text/javascript">
-      $(window).on('load',function(){
-          $('#elegantModalForm').modal({backdrop: 'static', keyboard: false, show:true})  
-      });
-  </script>
-{% endblock %}
+
+
