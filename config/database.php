@@ -86,7 +86,7 @@ return [
             'username' => env('DB_USERNAME', 'marcoslp'),
             'password' => env('DB_PASSWORD', 'marcoslp'),
             'options'  => [
-                'database' => env('DB_DATABASE') // sets the authentication database required by mongo 3
+                'database' => env('DB_DATABASE', 'tournament') // sets the authentication database required by mongo 3
             ]
         ],
 
