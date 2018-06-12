@@ -17,7 +17,7 @@ class SessionsController extends Controller{
     }
 
     public function store(){
-
+        dd(request());
         if(auth()->attempt(request(['email', 'password', 'isAdmin']))){
             return redirect('/home');
         }
