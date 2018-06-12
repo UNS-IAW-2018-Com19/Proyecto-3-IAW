@@ -19,6 +19,10 @@
         {% else %}
             {% if name == 'Equipo' %}
                 {% set collection = equipos %}
+            {% else %} 
+                {% if name == 'Carrera' %}
+                    {% set collection = carreras %}
+                {% endif %}
             {% endif %}
         {% endif %}
         
@@ -34,7 +38,14 @@
                     {% set id = item.id_equipo %}   
                     {% set logo = item.logo %}   
                     {% set nombre = item.nombre %}   
+                {% else %}
+                    {% if name == 'Carrera' %}
+                        {% set id = item.id_carrera %}   
+                        {% set logo = item.fotoMapa %}   
+                        {% set nombre = item.mapa %}   
+                    {% endif %}
                 {% endif %}
+                
             {% endif %}
 
             <!-- Team member -->
@@ -78,6 +89,4 @@
             </div>
         {% endfor %}
 </section>
-
-
 {% endblock %}

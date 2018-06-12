@@ -18,9 +18,14 @@ class SessionsController extends Controller{
 
     public function store(){
 
-        if(!auth()->attempt(request(['email', 'password']))){
+        if(auth()->attempt(request(['email', 'password', 'isAdmin']))){
+            return redirect('/home');
         }
-        return redirect('/home');
+        else{
+            return redirect('/')->withErrors([
+                'Login' => 'Las datos ingresados no coinciden con una cuenta o no tenes permiso para ingresar.'
+            ]);
+        }
     }
 
     public function destroy(){     

@@ -56,7 +56,7 @@ class EquipoController extends Controller{
             else{
                 redirect('/agregar/equipo')->withErrors([
                     'message' => 'La ID del equipo ya existe'
-                ]);;
+                ]);
             }
         }  
 

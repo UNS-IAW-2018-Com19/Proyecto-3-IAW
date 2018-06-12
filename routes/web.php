@@ -45,3 +45,12 @@ Route::get('/{eliminar}/equipo', 'EquipoController@create');
 Route::post('/eliminar/equipo','EquipoController@delete');
 
 
+Route::get('/{agregar}/carrera', 'CarreraController@create');
+Route::post('/agregar/carrera','CarreraController@store');
+
+Route::get('/{eliminar}/carrera', 'CarreraController@create');
+Route::post('/eliminar/carrera','CarreraController@delete');
+
+
+
+

@@ -1,3 +1,5 @@
+
+
 <div class="row">
     <div class="col-md-4">
         <form method="POST" action="{{rutas[0]}}">
@@ -25,6 +27,21 @@
                             <input class="form-control validate" id="id_equipo" placeholder="Enter Team ID" name="id_equipo" type="id_equipo" required>
                         </div>    
                     {% endif %}
+                            {% if name == 'Carrera' %}
+                            <h3> Datos de la carrera </h3>
+                            <div class="form-group">
+                            <label>ID carrera:</label>
+                            <input class="form-control validate" id="id_carrera" placeholder="Enter Race ID" name="id_carrera" type="id_carrera" autofocus>
+                            </div>
+                            <div class="form-group">
+                            <label>Número de fecha: </label>
+                            <input class="form-control validate" id="fecha" placeholder="Enter Race Number" name="fecha" type="fecha">
+                            </div>   
+                            <div class="form-group">
+                            <label>Cantidad de vueltas: </label>
+                            <input class="form-control validate" id="vueltas" placeholder="Enter Race Laps" name="vueltas" type="vueltas">
+                            </div>     
+                            {% endif %}
             {% endif %}
 
     </div>
@@ -49,17 +66,34 @@
                         <div class="form-group">
                             {% for i in 1..2 %}
                                 <label>Jugador {{i}}</label>
-                                <select type="jugador{{i}}" name="jugador{{i}}" class="form-control">
+                                <select type="jugador{{i}}" name="jugador{{i}}" class="form-control" required>
                                     {% for player in jugadores %}
                                     {% if player.id_equipo == null %}
-                                    <li>{{player.id_equipo}}</li>
                                         <option value="{{player.id_jugador}}">{{player.userName}}</option>
                                     {% endif %}
-                                     <option value=""></option>
                                     {% endfor %}
                                 </select>
                             {% endfor %}
                         </div>
+                    {% else %}
+                        {% if name == 'Carrera' %}
+                            <h3> ¿Carrera completada? </h3>
+                            <div class="form-group">
+                            <input name="completada" value="checked" type="checkbox" data-size="small" data-toggle="toggle" data-on="Completada" data-off="No completada" data-onstyle="success" data-offstyle="danger" >
+                            </div>
+                            <div>
+                            <h3> Insertar Posiciones de la carrera: </h3>
+                            {% for i in 1..12 %}
+                                <label>Posición {{i}}</label>
+                                <select type="jugador{{i}}" name="jugador{{i}}" class="form-control">
+                                    {% for player in jugadores %}
+                                        <option value="{{player.id_jugador}}">{{player.userName}}</option>
+                                    {% endfor %}
+                                <option value="" disabled selected>Seleccionar jugador</option>
+                                </select>
+                            {% endfor %}
+                            </div>
+                        {% endif %}
                     {% endif %}
             {% endif %}
     </div>
@@ -68,19 +102,36 @@
                     {% if name == 'Jugador' %}
                         <div class="form-group">
                             <label>Avatar:</label>
-                            <input class="form-control" id="avatar" placeholder="Enter Avatar" name="avatar" >
+                            <input class="form-control" id="avatar" placeholder="Enter Avatar" name="avatar" required>
                         </div>
                         <div class="form-group">
                             <label>Foto Personaje:</label>
-                            <input class="form-control" id="fotopersonaje" placeholder="Enter Character's Photo" name="fotopersonaje" >
+                            <input class="form-control" id="fotopersonaje" placeholder="Enter Character's Photo" name="fotopersonaje" required>
                         </div>
                     {% else %}
                         {% if name == 'Equipo' %}
                         <div class="form-group">
                             <label>Logo del equipo:</label>
-                            <input class="form-control" id="logo" placeholder="Enter logo" name="logo" >
+                            <input class="form-control" id="logo" placeholder="Enter logo" name="logo" required>
                         </div>
-                        {% endif %} 
+                        {% else %} 
+                            {% if name == 'Carrera' %}
+                             <div class="form-group">
+                                <label>Nombre del mapa de la carrera:</label>
+                                <input class="form-control" id="mapa" placeholder="Enter Map" name="mapa">
+                            </div>   
+                            <div class="form-group">
+                                <label>Imagen del mapa de la carrera:</label>
+                                  <select type="fotomapa" name="fotomapa" class="form-control">
+                                   {% for imagen in imagenes %}
+                                        {% if imagen.tipo == "carrera" %}
+                                             <option value={{imagen.nombre}}>{{imagen.nombre}}</option>
+                                    {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div> 
+                            {% endif %}
+                        {% endif %}
                     {% endif %}
     </div>
 </div>
@@ -94,3 +145,5 @@
         </div>
     </div>
         </form> 
+
+

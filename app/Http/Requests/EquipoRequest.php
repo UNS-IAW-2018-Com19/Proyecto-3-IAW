@@ -24,6 +24,7 @@ class EquipoRequest extends FormRequest
      */
     public function rules(){
          return [
+            'id_equipo' => 'required|integer',
             'nombre' => 'required|min:3|unique:equipos',
             'logo' => 'required|unique:equipos',   
         ];

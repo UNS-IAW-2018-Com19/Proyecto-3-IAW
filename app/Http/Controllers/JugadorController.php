@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Requests\JugadorRequest;
+
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 use Jenssegers\Mongodb\Eloquent\Builder;
@@ -69,11 +71,17 @@ class JugadorController extends Controller{
                 $avatar = $request['avatar'];
 
                 $player = Jugador::where('userName', $oldUserName)->first();
+
+                $check = Jugador::where('userName', $username)->first();
+
+                if($check != null)
+                    return redirect("/modificar/jugador")->withErrors([
+                        'message' => 'No se permite repetir el mismo username para dos jugadores'
+                    ]);; 
               
-                   
-                if($username != null)
+                if($username != null && $username != $oldUserName)
                     $player->userName = $username;
-                    
+                            
                 if($personaje != null)
                     $player->personaje= $personaje;
                     
