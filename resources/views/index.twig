@@ -7,7 +7,7 @@
 <!-- Modal -->
      <div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <form method="POST" action="/login">
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                 {{ csrf_field() }}
             <div class="modal-dialog" role="document">
                 <!--Content-->
                 <div class="modal-content form-elegant">
