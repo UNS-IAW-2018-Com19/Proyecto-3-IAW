@@ -82,7 +82,7 @@ return [
             'driver'   => 'mongodb',
             'host'     => env('DB_HOST', 'localhost'),
             'port'     => env('DB_PORT', 27017),
-            'database' => env('DB_DATABASE'),
+            'database' => env('DB_DATABASE', 'tournament'),
             'username' => env('DB_USERNAME'),
             'password' => env('DB_PASSWORD'),
             'options'  => [
