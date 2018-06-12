@@ -6,7 +6,7 @@
 {% if not(auth_check()) %}  
 <!-- Modal -->
      <div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <form method="POST" action="/login">
+        <form name='authenticate' method="POST" action="/login">
         <input type="hidden" name="_token" value="{{ csrf_token('authenticate') }}">
             <div class="modal-dialog" role="document">
                 <!--Content-->
