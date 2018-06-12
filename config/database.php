@@ -83,8 +83,8 @@ return [
             'host'     => env('DB_HOST','ds215380.mlab.com'),
             'port'     => env('DB_PORT', '15380'),
             'database' => env('DB_DATABASE', 'tournament'),
-            'username' => env('DB_USERNAME'),
-            'password' => env('DB_PASSWORD'),
+            'username' => env('DB_USERNAME', 'marcoslp'),
+            'password' => env('DB_PASSWORD', 'marcoslp'),
             'options'  => [
                 'database' => env('DB_DATABASE') // sets the authentication database required by mongo 3
             ]
