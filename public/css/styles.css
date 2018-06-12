@@ -4,14 +4,7 @@
 
 .navbar {
     background-color: #e60012;
-    height: 70px;
     margin : 0 !important; 
-}
-
-.col-centered {
-  float: none;
-  margin-right: auto;
-  margin-left: auto;
 }
 
 
@@ -210,16 +203,7 @@ body{
     }
     
 
-
-
-
-
-
-
-
-
-
-    /* FontAwesome for working BootSnippet :> */
+   /* FontAwesome for working BootSnippet :> */
 
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 #team {

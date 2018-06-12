@@ -103,4 +103,12 @@ class CarreraController extends Controller {
        return redirect('/agregar/carrera');
 
     }
+
+    public function delete(Request $request){
+        if(Auth::check()){
+            $id = (integer)$request['id'];
+            $carrera = Carrera::find($id);
+            $carrera->delete();
+        }
+    }
 }
