@@ -80,8 +80,8 @@ return [
 
         'mongodb' => [
             'driver'   => 'mongodb',
-            'host'     => env('DB_HOST'),
-            'port'     => env('DB_PORT'),
+            'host'     => env('DB_HOST','ds215380.mlab.com'),
+            'port'     => env('DB_PORT', '15380'),
             'database' => env('DB_DATABASE', 'tournament'),
             'username' => env('DB_USERNAME'),
             'password' => env('DB_PASSWORD'),
