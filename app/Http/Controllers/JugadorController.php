@@ -14,7 +14,7 @@ use Jenssegers\Mongodb\Eloquent\Builder;
 
 use \App\Jugador;
 use \App\Equipo;
-
+use \App\Imagen;
 
 
 
@@ -29,11 +29,12 @@ class JugadorController extends Controller{
 
         $jugadores = Jugador::all();
         $equipos = Equipo::all();
+        $imagenes = Imagen::all();
 
         $rutas = array("/agregar/jugador","/modificar/jugador","/eliminar/jugador");
         $name = "Jugador";
     
-        return view($view,compact('jugadores','equipos','rutas', 'name'));
+        return view($view,compact('jugadores','equipos','rutas', 'name', 'imagenes'));
     }
 
     public function store (Request $request){
