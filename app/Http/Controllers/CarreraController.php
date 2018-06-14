@@ -37,10 +37,7 @@ class CarreraController extends Controller {
     public function store(Request $request){
         $idCarrera=(integer)$request['id_carrera']; 
         $fechaCarrera=(integer)$request['fecha'];
-
-        dd($request);
-      
-        
+    
         $EncontrarCarrera=Carrera::where('id_carrera',$idCarrera)->first();
 
         if ($EncontrarCarrera!==null){
@@ -56,7 +53,7 @@ class CarreraController extends Controller {
             ]);        
         }
 
-        if($request->has('checkCompletada')){
+   /*     if($request->has('checkCompletada')){*/
                 $completada='true';    
 
                 //Primero revisaremos que no haya jugadores duplicados en las posiciones                
@@ -83,13 +80,13 @@ class CarreraController extends Controller {
                     array_push($posiciones, array(array("jugador" =>$jugadorConcreto->id_jugador, "puntaje" => $puntaje))); 
                     $puntaje--;   
                 }  
-        }
-        else{
+   /*      }
+       else{
             $completada='false';   
             return redirect('/agregar/carrera')->withErrors([
                 'message' => 'La carrera no está completada'
             ]);        
-        }
+        }*/
 
         $carrera = new Carrera;
         $carrera->id_carrera = (integer)request('id_carrera');
