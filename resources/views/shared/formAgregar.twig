@@ -14,6 +14,10 @@
                     <div class="form-group">
                         <label>Id jugador:</label>
                         <input class="form-control" id="id_jugador" placeholder="Enter Player ID" name="id_jugador" required>
+                    </div> 
+                    <div class="form-group">
+                        <label>Personaje:</label>
+                        <input class="form-control" id="personaje" placeholder="Enter Player Character" name="personaje" required>
                     </div>     
             {% else %}
                     {% if name == 'Equipo' %}
@@ -112,7 +116,7 @@
                         </div>
                         <div class="form-group">
                             <label>Foto Personaje:</label>
-                            <select type="personaje" name="personaje" class="form-control">
+                            <select type="fotopersonaje" name="fotopersonaje" class="form-control">
                                 {% for imagen in imagenes %}
                                 {% if imagen.tipo == "personaje" %}
                                         <option value={{imagen.nombre}}>{{imagen.nombre}}</option>
