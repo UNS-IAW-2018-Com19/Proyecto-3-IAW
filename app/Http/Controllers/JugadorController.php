@@ -43,7 +43,7 @@ class JugadorController extends Controller{
             $jugador->userName = $request['username'];
             $jugador->id_jugador = (integer)$request['id_jugador'];
             $jugador->personaje = $request['personaje'];
-            $jugador->personaje = $request['fotopersonaje'];  
+            $jugador->fotopersonaje = $request['fotopersonaje'];  
             $jugador->avatar = $request['avatar'];  
             
             $glider = $request['glider'];
