@@ -22,6 +22,10 @@
             {% else %} 
                 {% if name == 'Carrera' %}
                     {% set collection = carreras %}
+                {% else %}
+                    {% if name == 'Usuario' %}
+                        {% set collection = usuarios %}
+                    {% endif %}
                 {% endif %}
             {% endif %}
         {% endif %}
@@ -43,11 +47,18 @@
                         {% set id = item.id_carrera %}   
                         {% set logo = item.fotoMapa %}   
                         {% set nombre = item.mapa %}   
+                    {% else %}
+                         {% if name == 'Usuario' %}
+                        {% set id = item._id %}   
+                        {% set logo = "user.svg" %}   
+                        {% set nombre = item.username %}   
+                        {% endif %}
                     {% endif %}
                 {% endif %}
                 
             {% endif %}
 
+            {% if not(item.isAdmin) %}
             <!-- Team member -->
             <div class="col-xs-12 col-sm-6 col-md-4">
                <div id="flip{{id}}" class="flip-container">
@@ -87,6 +98,7 @@
                 <hr>
                 <hr>
             </div>
+            {% endif %}
         {% endfor %}
 </section>
 {% endblock %}

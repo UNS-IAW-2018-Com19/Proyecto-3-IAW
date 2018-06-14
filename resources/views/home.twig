@@ -6,7 +6,7 @@
         <div class="jumbotron text-center mdb-color lighten-2 white-text z-depth-2">
 
             <!--Title-->
-            <h1 class="card-title h2-responsive mt-2 font-bold"><strong>Bienvenido: Administrador {{ auth_user().name }}</strong></h1>
+            <h1 class="card-title h2-responsive mt-2 font-bold"><strong>Bienvenido: Administrador {{ auth_user().username }}</strong></h1>
             <!--Subtitle-->
             <p class="mt-4"><strong>Página de administración del torneo de Mario Kart</strong></p>
 
@@ -18,9 +18,10 @@
 
             <hr class="my-4 rgba-white-light">
 
-            <a href="/agregar/jugador"><button type="button" class="btn btn-outline-white">Modificar Jugadores <i class="fa fa-diamond ml-1"></i></button></a>
-            <a href="/agregar/carrera"><button type="button" class="btn btn-outline-white">Modificar Carreras <i class="fa fa-diamond ml-1"></i></button>
-            <a href="/agregar/equipo"><button type="button" class="btn btn-outline-white">Modificar Equipos <i class="fa fa-diamond ml-1"></i></button>
+            <a href="/agregar/jugador"><button type="button" class="btn btn-success">Modificar Jugadores <i class="fa fa-gamepad ml-1" aria-hidden="true"></i></button></a>
+            <a href="/agregar/carrera"><button type="button" class="btn btn-primary">Modificar Carreras <i class="fa fa-flag-checkered ml-1" aria-hidden="true"></i></button>
+            <a href="/agregar/equipo"><button type="button" class="btn btn-warning">Modificar Equipos <i class="fa fa-users ml-1" aria-hidden="true"></i></button>
+            <a href="/modificar/usuario"><button type="button" class="btn btn-danger">Modificar Usuarios <i class="fa fa-user-o ml-1" aria-hidden="true"></i></button>
 
         </div>
         <!--Jumbotron-->

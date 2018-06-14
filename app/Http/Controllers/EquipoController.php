@@ -10,6 +10,7 @@ use App\Http\Requests\EquipoRequest;
 
 use \App\Jugador;
 use \App\Equipo;
+use \App\Imagen;
 
 class EquipoController extends Controller{
 
@@ -20,11 +21,12 @@ class EquipoController extends Controller{
     public function create($view){
         $jugadores = Jugador::all();
         $equipos = Equipo::all();
+        $imagenes = Imagen::all();
 
         $rutas = array("/agregar/equipo","/modificar/equipo","/eliminar/equipo");
         $name = "Equipo";
     
-        return view($view,compact('jugadores','equipos','rutas', 'name'));
+        return view($view,compact('jugadores','equipos','rutas', 'name', 'imagenes'));
     }
 
     public function store(EquipoRequest $request){

@@ -15,7 +15,7 @@ class User extends Eloquent implements AuthenticatableContract, AuthorizableCont
     use Authenticatable, Authorizable, CanResetPassword, Notifiable; 
     protected $connection = 'mongodb';
     protected $collection = 'users';
-    protected $primaryKey = 'email';
+    protected $primaryKey = '_id';
 
     /**
      * The attributes that are mass assignable.
@@ -23,7 +23,7 @@ class User extends Eloquent implements AuthenticatableContract, AuthorizableCont
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username', 'email', 'password',
     ];
 
     /**

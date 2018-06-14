@@ -51,6 +51,11 @@ Route::post('/agregar/carrera','CarreraController@store');
 Route::get('/{eliminar}/carrera', 'CarreraController@create');
 Route::post('/eliminar/carrera','CarreraController@delete');
 
+Route::get('/{modificar}/usuario', 'UserController@create');
+Route::post('/modificar/usuario','UserController@update');
+
+Route::get('/{eliminar}/usuario', 'UserController@create');
+Route::post('/eliminar/usuario','UserController@delete');
 
 
 

@@ -70,7 +70,7 @@
             {% if name == 'Equipo' %}
                 {% for equipo in equipos %}
                     <div class="col-xs-12 col-sm-6 col-md-4">
-                    <div id="flip{{equipo.id_equipo}}" class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                    <div id="flip{{equipo.id_equipo}}" class="flip-container">
                             <div class="mainflip">
                                 <div class="frontside">
                                     <div class="card">
@@ -168,6 +168,64 @@
                     </div>     
                 {% endfor %}
             {% else %}
-               <h6 class="section-title h1">Proximamente...</h6> 
+            {% if name == 'Usuario' %}
+                {% for user in usuarios %}
+                {% if not(user.isAdmin) %}
+                    <!-- Team member -->
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div id="flip{{user._id}}" class="flip-container">
+                            <div class="mainflip">
+                                <div class="frontside">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <p><img class=" img-fluid" src="/images/logos/user.svg" alt="card image"></p>
+                                            <h4 class="card-title"> Usuario: {{ user.username }}</h4>
+                                            <button id="{{user._id}}" class="btn btn-primary btn-md btninfo">Ver info</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="backside">
+                                    <div class="card">
+                                        <div class="card-body text-center mt-4">
+                                            <h3 class="card-title">Información del usuario</h3>
+                                            <form id="formModificar{{user._id}}" method="POST" action="/modificar/usuario">
+                                                {{ csrf_field() }}
+                                                <h5 class="card-title">Reemplazar username</h5>
+                                                <div class="form-row">      
+                                                    <div class="col">
+                                                    <input type="usernameViejo" name="usernameViejo" class="form-control" value="{{user.username}}" readonly></input>
+                                                    </div>
+                                                    <div class="col">
+                                                    <input type="username" name="username" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <h5 class="card-title">¿Es editor?</h5>
+                                                <select type="editor" name="editor" class="form-control">
+                                                {% if user.editor %}
+                                                        <option selected="selected">true</option>
+                                                        <option>false</option>
+                                                {% else %}
+                                                        <option>true</option>
+                                                        <option selected="selected">false</option>
+                                                {% endif %}
+                                                </select>
+                                            </form>
+                                                <button id="{{user._id}}" class="btn btn-danger btn-md btninfo">Cancelar</button>
+                                                <button type="submit" form="formModificar{{user._id}}" class="btn btn-success btn-md">Modificar</button>     
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <hr>
+                        <hr>
+                        <hr>
+                        <hr>
+                    </div>
+                {% endif %}
+                {% endfor %}
+            {% endif %}
             {% endif %}
         {% endif %}
