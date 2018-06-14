@@ -46,6 +46,7 @@ class CarreraController extends Controller {
             ]);
         }
         
+
         $CarreraConFecha = Carrera::where('fecha',$fechaCarrera)->first();
         if ($CarreraConFecha!==null){
              return  redirect('/agregar/carrera')->withErrors([
@@ -59,7 +60,7 @@ class CarreraController extends Controller {
                 //Primero revisaremos que no haya jugadores duplicados en las posiciones                
                 $checkDuplicate=array();
                 for ($i = 1; $i <= 12; $i++) {
-                    $username = 'username'.$i;
+                    $username = 'jugador'.$i;
                     array_push($checkDuplicate,$request[$username]);
                 }
                 //De ser asi, envio un error
@@ -75,8 +76,8 @@ class CarreraController extends Controller {
                 $puntaje = 15;
 
                 for ($i = 1; $i <= 12; $i++) {
-                    $username = 'username'.$i;
-                    $jugadorConcreto=$jugadores->firstWhere('userName',$request[$username]);
+                    $username = 'jugador'.$i;
+                    $jugadorConcreto = Jugador::where('id_jugador', (integer)$request[$username])->first();
                     array_push($posiciones, array(array("jugador" =>$jugadorConcreto->id_jugador, "puntaje" => $puntaje))); 
                     $puntaje--;   
                 }  
@@ -95,6 +96,7 @@ class CarreraController extends Controller {
         $carrera->fotoMapa = request('fotoMapa');
         $carrera->vueltas = request('vueltas');
         $carrera->completada = $completada;
+        $carrera->posiciones = $posiciones;
         $carrera->save();
 
        return redirect('/agregar/carrera');
